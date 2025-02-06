@@ -276,3 +276,17 @@ for i, plate_img in enumerate(plate_imgs):
 
     plt.subplot(len(plate_imgs), 1, i+1)
     plt.imshow(img_result, cmap='gray')
+
+info = plate_infos[longest_idx]
+chars = plate_chars[longest_idx]
+
+print(chars)
+
+img_out = img_ori.copy()
+
+cv2.rectangle(img_out, pt1=(info['x'], info['y']), pt2=(info['x']+info['w'], info['y']+info['h']), color=(255,0,0), thickness=2)
+
+cv2.imwrite(chars + '.jpg', img_out)
+
+plt.figure(figsize=(12, 10))
+plt.imshow(img_out)
